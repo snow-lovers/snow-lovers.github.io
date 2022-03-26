@@ -1178,7 +1178,7 @@ this.wordle = this.wordle || {}, this.wordle.bundle = function (e) {
                     first_div.style = "min-height:110px;margin-left:40px;margin-top:20px;"
                     var profil_img = document.createElement("img");
                     profil_img.src = "img/profil.jpg";
-                    profil_img.style = 'border-radius:50%; float:left; width:20%;vertical-align:middle;margin-top:10px';
+                    profil_img.style = 'border-radius:50%; float:left; width:25%;vertical-align:middle;margin-top:10px';
                     first_div.appendChild(profil_img);
                     var username = document.createElement("h3");
                     username.style = 'float: left; margin-top:30px; margin-left:20px; white-space: pre;';
