@@ -1175,10 +1175,10 @@ this.wordle = this.wordle || {}, this.wordle.bundle = function (e) {
 
                     // TODO Add the current review to the div $review
                     var first_div = document.createElement("div");
-                    first_div.style = "min-height:110px;"
+                    first_div.style = "min-height:110px;margin-left:40px;margin-top:20px;"
                     var profil_img = document.createElement("img");
                     profil_img.src = "img/profil.jpg";
-                    profil_img.style = 'border-radius:50%; float:left; width:20%;vertical-align:middle';
+                    profil_img.style = 'border-radius:50%; float:left; width:20%;vertical-align:middle;margin-top:10px';
                     first_div.appendChild(profil_img);
                     var username = document.createElement("h3");
                     username.style = 'float: left; margin-top:30px; margin-left:20px; white-space: pre;';
@@ -1189,9 +1189,10 @@ this.wordle = this.wordle || {}, this.wordle.bundle = function (e) {
 
 
                     var second_div = document.createElement("div");
+                    second_div.style = "margin: auto;"
                     var s = document.createElement("p");
                     // s.textContent = "I waited for a White Russian for about 40 minutes, probably they got the cream themselves. Food was not bad. A lot of underage girls drinking vodka, I liked it";
-                    s.textContent = "It only gets worse over the years. Although for reasonable prices, everything is not so bad.\
+                    s.textContent = "The alcohol is diluted. Although for reasonable prices, everything is not so bad.\
                     Visitors are schoolchildren. Everything is disorganized and chaotic.\
                     Waiters cannot be called, although I understand that it is hard to work as a waiter in such a place, plus I apparently did not like it.\
                     The waiters are as fucked as possible.";
