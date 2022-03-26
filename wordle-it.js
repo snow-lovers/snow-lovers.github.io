@@ -1189,7 +1189,7 @@ this.wordle = this.wordle || {}, this.wordle.bundle = function (e) {
 
 
                     var second_div = document.createElement("div");
-                    second_div.style = "margin: auto;"
+                    second_div.style = "margin: 6%;"
                     var s = document.createElement("p");
                     // s.textContent = "I waited for a White Russian for about 40 minutes, probably they got the cream themselves. Food was not bad. A lot of underage girls drinking vodka, I liked it";
                     s.textContent = "The alcohol is diluted. Although for reasonable prices, everything is not so bad.\
