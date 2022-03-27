@@ -850,6 +850,7 @@ this.wordle = this.wordle || {}, this.wordle.bundle = function (e) {
             evaluations: null,
             rowIndex: null,
             solution: null,
+            review: null,
             gameStatus: null,
             lastPlayedTs: null,
             lastCompletedTs: null,
@@ -938,7 +939,11 @@ this.wordle = this.wordle || {}, this.wordle.bundle = function (e) {
     }(c(HTMLElement));
     customElements.define("game-toast", Ea);
     var Aa = ["★★★☆☆", "★★★★☆", "★☆☆☆☆", "★★☆☆☆", "★★☆☆☆"],
-        Bb = [],
+        Bb = ["The alcohol is diluted. Waited for a white russian for about 40 minutes, probably they got the cream themselves. Everything is disorganized and chaotic. the waiters are as fucked as possible, but a lot of underage girls drinking vodka, I liked it",
+        "The food was quite good, Just didn't like the chicken with peanuts, sushi delicious. Service fast. The only problem was the noise made by the kids that ruins the relaxing atmosphere created by the zen music.",
+        "We went in the evening. Very dirty. The seller stole my chips. Beer packaging on the floor. Here, near the door, and there the girl drank beer. Very uncomfortable.",
+        "We were in this institution today. We took poke with salmon and cod. The food quality is terrible. As a result, my husband and I were poisoned. Pink footsteps on the floor.",
+        "Waiting outside for 10 minutes, then phoned them. They told us to come inside which was written nowhere. As a result, I was late for my work meeting afterwards. PS: the food was not the best and service slow. I will not come back with my family. EVER!"],
         Ia = "correct",
         Ca = "absent";
     var Ma = {
@@ -968,7 +973,11 @@ this.wordle = this.wordle || {}, this.wordle.bundle = function (e) {
         return Math.floor(t / 864e5)
     }
 
-    // TODO Function that determines the next one
+    function RPa(e) {
+        var a, s = Na(e) - 83;
+        return a = s % Bb.length, Bb[a]
+    }
+
     function Pa(e) {
         var a, s = Na(e) - 83;
         return a = s % Aa.length, Aa[a]
@@ -1046,19 +1055,20 @@ this.wordle = this.wordle || {}, this.wordle.bundle = function (e) {
 
             function t() {
                 var e;
-                s(this, t), r(p(e = a.call(this)), "tileIndex", 0), r(p(e), "rowIndex", 0), r(p(e), "solution", void 0), r(p(e), "boardState", void 0), r(p(e), "evaluations", void 0), r(p(e), "canInput", !0), r(p(e), "gameStatus", Qa), r(p(e), "letterEvaluations", {}), r(p(e), "$board", void 0), r(p(e), "$keyboard", void 0), r(p(e), "$game", void 0), r(p(e), "today", void 0), r(p(e), "lastPlayedTs", void 0), r(p(e), "lastCompletedTs", void 0), r(p(e), "hardMode", void 0), r(p(e), "dayOffset", void 0), e.attachShadow({
+                s(this, t), r(p(e = a.call(this)), "tileIndex", 0), r(p(e), "rowIndex", 0), r(p(e), "solution", void 0), r(p(e), "review", void 0), r(p(e), "boardState", void 0), r(p(e), "evaluations", void 0), r(p(e), "canInput", !0), r(p(e), "gameStatus", Qa), r(p(e), "letterEvaluations", {}), r(p(e), "$board", void 0), r(p(e), "$keyboard", void 0), r(p(e), "$game", void 0), r(p(e), "today", void 0), r(p(e), "lastPlayedTs", void 0), r(p(e), "lastCompletedTs", void 0), r(p(e), "hardMode", void 0), r(p(e), "dayOffset", void 0), e.attachShadow({
                     mode: "open"
                 }), e.today = new Date;
                 var o = za();
-                return e.lastPlayedTs = o.lastPlayedTs, !e.lastPlayedTs || $a(new Date(e.lastPlayedTs), e.today) >= 1 ? (e.boardState = new Array(3).fill(""), e.evaluations = new Array(3).fill(null), e.solution = Pa(e.today), e.dayOffset = Na(e.today), e.lastCompletedTs = o.lastCompletedTs, e.hardMode = o.hardMode, e.restoringFromLocalStorage = !1, ja({
+                return e.lastPlayedTs = o.lastPlayedTs, !e.lastPlayedTs || $a(new Date(e.lastPlayedTs), e.today) >= 1 ? (e.boardState = new Array(3).fill(""), e.evaluations = new Array(3).fill(null), e.solution = Pa(e.today), e.review = RPa(e.today), e.dayOffset = Na(e.today), e.lastCompletedTs = o.lastCompletedTs, e.hardMode = o.hardMode, e.restoringFromLocalStorage = !1, ja({
                     rowIndex: e.rowIndex,
                     boardState: e.boardState,
                     evaluations: e.evaluations,
                     solution: e.solution,
+                    review: e.review,
                     gameStatus: e.gameStatus
                 }), Da("event", "level_start", {
                     level_name: Fa(e.solution)
-                })) : (e.boardState = o.boardState, e.evaluations = o.evaluations, e.rowIndex = o.rowIndex, e.solution = o.solution, e.dayOffset = Na(e.today), e.letterEvaluations = Oa(e.boardState, e.evaluations), e.gameStatus = o.gameStatus, e.lastCompletedTs = o.lastCompletedTs, e.hardMode = o.hardMode, e.gameStatus !== Qa && (e.canInput = !1), e.restoringFromLocalStorage = !0), e
+                })) : (e.boardState = o.boardState, e.evaluations = o.evaluations, e.rowIndex = o.rowIndex, e.review = o.review, e.solution = o.solution, e.dayOffset = Na(e.today), e.letterEvaluations = Oa(e.boardState, e.evaluations), e.gameStatus = o.gameStatus, e.lastCompletedTs = o.lastCompletedTs, e.hardMode = o.hardMode, e.gameStatus !== Qa && (e.canInput = !1), e.restoringFromLocalStorage = !0), e
             }
             return o(t, [{
                 key: "evaluateRow",
@@ -1083,6 +1093,7 @@ this.wordle = this.wordle || {}, this.wordle.bundle = function (e) {
                             }
                             return s
                         }(s, this.solution);
+                        console.log(this.solution)
 
                         this.evaluations[this.rowIndex] = n, this.letterEvaluations = Oa(this.boardState, this.evaluations), a.evaluation = this.evaluations[this.rowIndex], this.rowIndex += 1;
                         var i = this.rowIndex >= 3,
@@ -1106,6 +1117,7 @@ this.wordle = this.wordle || {}, this.wordle.bundle = function (e) {
                             boardState: this.boardState,
                             evaluations: this.evaluations,
                             solution: this.solution,
+                            review: this.review,
                             gameStatus: this.gameStatus,
                             lastPlayedTs: Date.now()
                         })
@@ -1186,14 +1198,10 @@ this.wordle = this.wordle || {}, this.wordle.bundle = function (e) {
                     username.textContent += "☆☆☆☆☆ ?"
                     first_div.appendChild(username);
                     this.$review.appendChild(first_div);
-
-
                     var second_div = document.createElement("div");
                     second_div.style = "margin: 6%;"
                     var s = document.createElement("p");
-                    // s.textContent = "I waited for a White Russian for about 40 minutes, probably they got the cream themselves. Food was not bad. A lot of underage girls drinking vodka, I liked it";
-                    s.textContent = "The alcohol is diluted. Waited for a white russian for about 40 minutes, probably they got the cream themselves.\
-                    Everything is disorganized and chaotic. the waiters are as fucked as possible, but a lot of underage girls drinking vodka, I liked it";
+                    s.textContent = this.review;
                     second_div.appendChild(s);
                     this.$review.appendChild(second_div);
 
@@ -1495,7 +1503,7 @@ this.wordle = this.wordle || {}, this.wordle.bundle = function (e) {
     }(c(HTMLElement));
     customElements.define("game-switch", bs);
     var fs = document.createElement("template");
-    fs.innerHTML = '\n  <style>\n  .instructions {\n    font-size: 14px;\n    color: var(--color-tone-1)\n  }\n\n  .examples {\n    border-bottom: 1px solid var(--color-tone-4);\n    border-top: 1px solid var(--color-tone-4);\n  }\n\n  .example {\n    margin-top: 24px;\n    margin-bottom: 24px;\n  }\n\n  game-tile {\n    width: 40px;\n    height: 40px;\n  }\n\n  :host([page]) section {\n    padding: 16px;\n    padding-top: 0px;\n  }\n\n  </style>\n  <section>\n    <div class="instructions">\n      <p>Guess the <strong>S-Review</strong> rating in 3 tries.</p>\n      <p><b><u>Disclaimer!</u></b> S-Reviews is <b>not</b> related to Google-Maps, and all reviews are fictive.</p>\n      <p>You don\'t get any hints after your try, because I\'m a mean beast.</p><p>Actually you still do because I suck at coding.</p>\n       <div class="examples">\n        <div class="example">\n          <div class="row">\n            <game-tile letter="★" evaluation="absent" reveal></game-tile>\n            <game-tile letter="★" evaluation="absent" reveal></game-tile>\n            <game-tile letter="☆" evaluation="absent" reveal></game-tile>\n            <game-tile letter="☆" evaluation="absent" reveal></game-tile>\n            <game-tile letter="☆" evaluation="absent" reveal></game-tile>\n               </div>\n          <p>The guess was wrong</p>\n        </div>\n        <div class="example">\n          <div class="row">\n            <game-tile letter="★" evaluation="correct" reveal></game-tile>\n            <game-tile letter="★" evaluation="correct" reveal></game-tile>\n            <game-tile letter="★" evaluation="correct" reveal></game-tile>\n            <game-tile letter="★" evaluation="correct" reveal></game-tile>\n            <game-tile letter="☆" evaluation="correct" reveal></game-tile>\n          </div>\n          <p>The guess was right</p>\n        </div>\n      <p><strong>A new S-review every day!<strong></p>\n    </div>\n  </section>\n';
+    fs.innerHTML = '\n  <style>\n  .instructions {\n    font-size: 14px;\n    color: var(--color-tone-1)\n  }\n\n  .examples {\n    border-bottom: 1px solid var(--color-tone-4);\n    border-top: 1px solid var(--color-tone-4);\n  }\n\n  .example {\n    margin-top: 24px;\n    margin-bottom: 24px;\n  }\n\n  game-tile {\n    width: 40px;\n    height: 40px;\n  }\n\n  :host([page]) section {\n    padding: 16px;\n    padding-top: 0px;\n  }\n\n  </style>\n  <section>\n    <div class="instructions">\n      <p>You are shown a review similar to those on Google maps and you must guess the rating of the <strong>S-Review</strong> in 3 tries.</p>\n     <p><b><u>Disclaimer!</u></b> S-Reviews is <b>not</b> related to Google-Maps, and all reviews are fictive. (Or are they?)</p>\n      <p>You don\'t get any hints after your try, because I\'m a mean beast.</p><p>Actually you still do because I suck at coding.</p>\n       <div class="examples">\n        <div class="example">\n          <div class="row">\n            <game-tile letter="★" evaluation="absent" reveal></game-tile>\n            <game-tile letter="★" evaluation="absent" reveal></game-tile>\n            <game-tile letter="☆" evaluation="absent" reveal></game-tile>\n            <game-tile letter="☆" evaluation="absent" reveal></game-tile>\n            <game-tile letter="☆" evaluation="absent" reveal></game-tile>\n               </div>\n          <p>The guess was wrong</p>\n        </div>\n        <div class="example">\n          <div class="row">\n            <game-tile letter="★" evaluation="correct" reveal></game-tile>\n            <game-tile letter="★" evaluation="correct" reveal></game-tile>\n            <game-tile letter="★" evaluation="correct" reveal></game-tile>\n            <game-tile letter="★" evaluation="correct" reveal></game-tile>\n            <game-tile letter="☆" evaluation="correct" reveal></game-tile>\n          </div>\n          <p>The guess was right</p>\n        </div>\n      <p><strong>A new S-review every day!<strong></p>\n    </div>\n  </section>\n';
     var ks = function (e) {
         n(t, e);
         var a = h(t);
