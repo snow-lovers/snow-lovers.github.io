@@ -1,4 +1,4 @@
-this.wordle = this.wordle || {}, this.wordle.bundle = function (e) {
+this.rating = this.rating || {}, this.rating.bundle = function (e) {
     "use strict";
 
     function a(e) {
@@ -885,7 +885,7 @@ this.wordle = this.wordle || {}, this.wordle.bundle = function (e) {
             key: "connectedCallback",
             value: function () {
                 var e, a = this;
-                this.shadowRoot.appendChild(Sa.content.cloneNode(!0)), this.shadowRoot.querySelector("#hash").textContent = null === (e = window.wordle) || void 0 === e ? void 0 : e.hash, this.shadowRoot.querySelector("#puzzle-number").textContent = "#".concat(this.gameApp.dayOffset), this.shadowRoot.addEventListener("game-switch-change", (function (e) {
+                this.shadowRoot.appendChild(Sa.content.cloneNode(!0)), this.shadowRoot.querySelector("#hash").textContent = null === (e = window.rating) || void 0 === e ? void 0 : e.hash, this.shadowRoot.querySelector("#puzzle-number").textContent = "#".concat(this.gameApp.dayOffset), this.shadowRoot.addEventListener("game-switch-change", (function (e) {
                     e.stopPropagation();
                     var s = e.detail,
                         t = s.name,
@@ -993,7 +993,7 @@ this.wordle = this.wordle || {}, this.wordle.bundle = function (e) {
     }
     window.dataLayer = window.dataLayer || [], Da("js", new Date);
     Da("config", "G-2SSGMHY3NP", {
-        app_version: null === (Ha = window.wordle) || void 0 === Ha ? void 0 : Ha.hash,
+        app_version: null === (Ha = window.rating) || void 0 === Ha ? void 0 : Ha.hash,
         debug_mode: !1
     });
     var Ba = [].concat(g(Ga.split("").slice(13)), g(Ga.split("").slice(0, 13)));
